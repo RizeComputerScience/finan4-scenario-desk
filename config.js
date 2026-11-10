@@ -298,7 +298,7 @@
       if (lvl === 1) return `Bad end: (${n0(x.lo)} × ${m(t.c)} − ${m(t.F)}) × ${af(t)} − ${m(t.I)} = ${sgn(x.nLo)}.`;
       return `Bad end: ${sgn(x.nLo)}. Good end: (${n0(x.hi)} × ${m(t.c)} − ${m(t.F)}) × ${af(t)} − ${m(t.I)} = ${sgn(x.nHi)}.<br>` + INPUTS.map(([k, lab]) => `${lab}: the bar runs ${m(t.tor[k].nHi - t.tor[k].nLo)}`).join('<br>') + `<br>The widest bar is ${INPUTS.find((z) => z[0] === t.decision)[1].toLowerCase()}.`; }
     if (t.id === 't4') return lvl === 1 ? `The club needs ${m(t.I)} ÷ ${af(t)} = ${m(t.need)} of cash a year to make NPV zero.`
-      : `(${m(t.need)} + ${m(t.F)}) ÷ ${m(t.c)} = ${n1(t.answer)} members. In the calculator: <code>(${t.I}/${t.AF}+${t.F})/${t.c}</code>.`;
+      : `(${m(t.need)} + ${m(t.F)}) ÷ ${m(t.c)} = ${n1(t.answer)} members. In Desmos, three lines: <code>${t.I}/${t.AF}</code>, then <code>ans+${t.F}</code>, then <code>ans/${t.c}</code>.`;
     if (t.id === 't5') return lvl === 1 ? `Depreciation: ${m(t.I)} ÷ ${N} = ${m(t.dep)} a year.`
       : `Depreciation: ${m(t.dep)}. Members for zero profit: (${m(t.F)} + ${m(t.dep)}) ÷ ${m(t.c)} = ${n1(t.acct)}. That is below the NPV break-even of ${n1(t.npvBE)}, so at ${n1(t.acct)} members the NPV is below zero.`;
     if (t.id === 't6') { const cd = t.cards[t.story];

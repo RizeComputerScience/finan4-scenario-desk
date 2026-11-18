@@ -1,0 +1,72 @@
+/* The Scenario Desk theme (FINAN IV Unit 7), 2026-11-18. Loaded after desk.css; changes the look only.
+   Bexley Courts' indoor pickleball club: court blue and kitchen green with white court lines, an optic-yellow ball,
+   a condensed athletic face for the title, a strip of net under the header, round paddle-shaped buttons and step chips.
+   Dark mode is the court surround after hours, lit by the ball's yellow. */
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700;800&family=Lexend:wght@400;500;600;700&display=swap');
+:root{
+  --bg:#EAF1F8;--surface:#FFFFFF;--panel:#DCE7F2;--line:#B9CCE0;--line-strong:#4F6E8F;
+  --ink:#0F2338;--muted:#425970;--brand:#1A5CA6;--brand-ink:#FFFFFF;--brand-tint:#DCEAF8;
+  --ok:#1B6B3C;--ok-tint:#DFF0E4;--bad:#A3241C;--bad-tint:#FBE6E3;--hint:#36506A;--hint-tint:#E2EAF2;--focus:#0F2338;--hl:#EEF7B0;--ok-ink:#FFFFFF;
+  --kitchen:#237347;--ball:#D6EC37;--surround:#2C7A57;--courtline:#FFFFFF;--net:rgba(15,35,56,.55);--tape:#1A5CA6;--zebra:#F2F7FC;
+  --receipt-frame:#1A5CA6;--receipt-paper:#F4F8FC;
+  --serif:'Lexend','Helvetica Neue',Arial,sans-serif;--display:'Saira Condensed','Arial Narrow',sans-serif;}
+:root[data-theme="dark"]{
+  --bg:#0F2A21;--surface:#143429;--panel:#1A4033;--line:#2B5747;--line-strong:#86B4A0;
+  --ink:#ECF6F0;--muted:#AFCDBE;--brand:#D6EC37;--brand-ink:#11261C;--brand-tint:#283A16;
+  --ok:#7DD49A;--ok-tint:#173A28;--bad:#FF8D84;--bad-tint:#43231F;--hint:#A9C9DA;--hint-tint:#183544;--focus:#D6EC37;--hl:#3B4614;--ok-ink:#0F2A21;
+  --kitchen:#5BC28A;--ball:#D6EC37;--surround:#0B2019;--courtline:#2F5E4C;--net:rgba(236,246,240,.35);--tape:#ECF6F0;--zebra:#173A2D;}
+
+body{font-size:17px;line-height:1.62;background-color:var(--bg);display:flex;flex-direction:column;min-height:100vh}
+/* the court's sidelines run down both edges of a wide screen */
+@media (min-width:900px){body{background-image:linear-gradient(90deg,var(--surround) 0 14px,var(--courtline) 14px 18px,transparent 18px calc(100% - 18px),var(--courtline) calc(100% - 18px) calc(100% - 14px),var(--surround) calc(100% - 14px))}}
+header.bar{order:-2;background:var(--bg);border-bottom:0}
+/* a strip of net: white tape on top, mesh below */
+header.bar::after{content:"";display:block;height:12px;
+  background:linear-gradient(var(--tape),var(--tape)) top/100% 3px no-repeat,
+    repeating-linear-gradient(90deg,var(--net) 0 1.5px,transparent 1.5px 8px),repeating-linear-gradient(0deg,var(--net) 0 1.5px,transparent 1.5px 4.5px)}
+.brand{font-style:normal}
+.brand b{font:800 21px var(--display);letter-spacing:.01em}
+
+/* header art: only on the first screen */
+.desk-art{order:-1;display:none;width:calc(100% - 2.2rem);max-width:calc(820px - 2.2rem);height:auto;margin:1.6rem auto 0;border-radius:10px}
+body:has(#startBox) .desk-art{display:block}
+@media (max-width:600px){.desk-art{aspect-ratio:2.2/1;object-fit:cover;object-position:0 50%}}
+
+/* step chips: round like the ball, a finished one fills with court blue (night: ball yellow) */
+nav.steps{padding-top:.55rem}
+nav.steps button{border-radius:999px;font:500 14px var(--serif);border:2px solid var(--line-strong);padding:.18rem .8rem}
+nav.steps button.done{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+nav.steps button[aria-current="step"]{outline:3px solid var(--kitchen);outline-offset:2px}
+:root[data-theme="dark"] nav.steps button[aria-current="step"]{outline-color:var(--ball)}
+
+/* type: a tall condensed title with the court's three zones as its baseline */
+.kicker{font:600 15px var(--serif);font-style:normal;color:var(--kitchen);letter-spacing:.01em}
+:root[data-theme="dark"] .kicker{color:var(--kitchen)}
+h1{font:800 clamp(48px,8vw,78px)/.98 var(--display);color:var(--brand);letter-spacing:0}
+h1::after{content:"";display:block;height:7px;width:min(15rem,62%);margin-top:.75rem;border-radius:4px;
+  background:linear-gradient(90deg,var(--brand) 0 38%,var(--courtline) 38% 40%,var(--kitchen) 40% 60%,var(--courtline) 60% 62%,var(--brand) 62%)}
+:root:not([data-theme="dark"]) h1::after{box-shadow:0 0 0 2px var(--surface)}
+h2{font:700 32px/1.1 var(--display);letter-spacing:.005em}
+h3{font-weight:600}
+.dek{font-size:18.5px;font-style:normal;color:var(--ink);max-width:36em}
+.points{font:800 54px/1 var(--display);color:var(--brand)}
+
+/* cards: a court seen from above, kitchen-green band on top, a white line inside */
+.memo{border-radius:10px;border:2px solid var(--line-strong);border-top:10px solid var(--kitchen);box-shadow:inset 0 0 0 4px var(--surface),inset 0 0 0 6px var(--line)}
+.box{border-radius:10px;border-left:6px solid var(--kitchen)}
+.stamp{border-radius:999px}
+.btn,.btn-calc{border-radius:999px}
+.btn{font-weight:600;padding:.62rem 1.45rem}
+.btn-quiet{border-radius:999px}
+.choice span{border-width:2px}
+
+/* tables: condensed scoreboard heads over a blue court line; alternate rows shaded like court lanes */
+table.cf th{font:700 16px var(--display);letter-spacing:.01em;color:var(--brand);border-bottom:3px solid var(--brand)}
+table.cf caption{font-style:normal;font-weight:500}
+table.cf tbody tr:nth-child(even):not(.hl) td{background:var(--zebra)}
+table.cf.ladder.filled tbody tr:nth-child(even):not(.hl) td{background:transparent}
+table.cf tfoot tr.total td{border-top:2.5px solid var(--ink)}
+.formula{border-left:4px solid var(--kitchen);border-radius:0 8px 8px 0}
+.calc-strip{border-left-color:var(--kitchen)}
+details.example{border-left-color:var(--kitchen);border-radius:10px}
+@media (max-width:680px){table.cf th{font-size:14px}}
